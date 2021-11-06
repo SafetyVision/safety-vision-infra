@@ -7,24 +7,28 @@ Install `make` for your shell of choice.
 
 ## Setup
 
-1. Clone this repo and `cd` to this projects root directory.
+1. Clone [safety-vision-ui](https://github.com/SafetyVision/safety-vision-ui), [safety-vision-platform](https://github.com/SafetyVision/safety-vision-platform), and this repo.
 
-2. Build and run the docker images:
+2. Build the Docker containers for the platform and the UI by running `make build` in their respective directories.
+
+3. `cd` to this repository's directory.  
+
+4. Build and run the docker images:
 ```
 make build
 make up
 ```
 
-3. Run the database migrations (if you have issues running this just try again in a few seconds):
+5. Run the database migrations (if you have issues running this just try again in a few seconds):
 ```
 make migrate
 ```
 
-4. Visit http://localhost to verify the UI is running.
+6. Visit http://localhost to verify the UI is running.
 
-5. Visit http://localhost/api to verify the backend and database are running.
+7. Visit http://localhost/api to verify the backend and database are running.
 
-6. Shut the application down:
+8. Shut the application down:
 ```
 make down
 ```
