@@ -14,6 +14,5 @@ migrate:
 makemigrations:
 	docker-compose exec web python manage.py makemigrations
 
-
 build:
 	docker-compose build
