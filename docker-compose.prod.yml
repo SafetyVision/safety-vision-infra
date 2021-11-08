@@ -16,7 +16,7 @@ services:
     command: python manage.py runserver 0.0.0.0:8000
     environment:
       - SECRET_KEY
-      - DEBUG=
+      - DEBUG
       - ALLOWED_HOSTS
       - DATABASE_HOST
       - DATABASE_USER
