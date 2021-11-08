@@ -30,7 +30,7 @@ services:
     depends_on:
       - db
   ui:
-    image: safety-vision/safety-vision-ui
+    image: safetyvision/safety-vision-ui
     command: npm start
     expose:
       - 3000
