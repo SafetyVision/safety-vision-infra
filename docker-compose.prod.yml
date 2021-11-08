@@ -23,14 +23,14 @@ services:
     volumes:
       - db:/var/lib/mysql
   web:
-    image: safety-vision-platform_web-local
+    image: safetyvision/safety-vision-platform
     command: python manage.py runserver 0.0.0.0:8000
     expose:
       - 8000
     depends_on:
       - db
   ui:
-    image: safety-vision-platform_ui-local
+    image: safety-vision/safety-vision-ui
     command: npm start
     expose:
       - 3000
