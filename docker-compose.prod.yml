@@ -11,31 +11,23 @@ services:
     depends_on:
       - web
       - ui
-  db:
-    image: mysql:5.7
-    restart: always
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_DATABASE: 'safety-vision-platform-db'
-      MYSQL_ROOT_USER: 'root'
-      MYSQL_ROOT_PASSWORD: 'password'
-    volumes:
-      - db:/var/lib/mysql
   web:
     image: safetyvision/safety-vision-platform
     command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - SECRET_KEY
+      - DEBUG=
+      - ALLOWED_HOSTS
+      - DATABASE_HOST
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_NAME
     expose:
       - 8000
-    depends_on:
-      - db
   ui:
     image: safetyvision/safety-vision-ui
     command: npm start
     expose:
       - 3000
     depends_on:
-      - db
       - web
-volumes:
-  db:
