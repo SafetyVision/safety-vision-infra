@@ -13,7 +13,7 @@ services:
       - ui
   web:
     image: safetyvision/safety-vision-platform
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     environment:
       - SECRET_KEY
       - DEBUG
