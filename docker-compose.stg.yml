@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  reverse_proxy:
+    container_name: safety-vision-nginx
+    build: .
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - web
+      - ui
+  db:
+    image: mysql:5.7
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: 'safety-vision-platform-db'
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ROOT_PASSWORD: 'password'
+    volumes:
+      - db:/var/lib/mysql
+  web:
+    image: safety-vision-platform_web-local
+    command: python manage.py runserver 0.0.0.0:8000
+    environment:
+      - SECRET_KEY=django-insecure-b4^apzjzd^*j3e%mk%6g+01c=%wro97mdcesysh)l9j*h6#3tf
+      - DEBUG=True
+      - ALLOWED_HOSTS=web
+      - DATABASE_HOST=db
+      - DATABASE_USER=root
+      - DATABASE_PASSWORD=password
+      - DATABASE_NAME=safety-vision-platform-db
+    expose:
+      - 8000
+    depends_on:
+      - db
+  ui:
+    image: safety-vision-platform_ui-local
+    command: npm start
+    expose:
+      - 3000
+    depends_on:
+      - db
+      - web
+volumes:
+  db:
