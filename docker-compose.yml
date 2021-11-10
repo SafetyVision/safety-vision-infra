@@ -14,7 +14,6 @@ services:
       - "443:443"
     depends_on:
       - web
-      - ui
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
@@ -39,11 +38,3 @@ services:
       - AWS_S3_SECRET_ACCESS_KEY
     expose:
       - 8000
-  ui:
-    image: safetyvision/safety-vision-ui
-    command: npm start
-    restart: unless-stopped
-    expose:
-      - 3000
-    depends_on:
-      - web
