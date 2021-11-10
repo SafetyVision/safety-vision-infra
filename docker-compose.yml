@@ -7,9 +7,7 @@ services:
     restart: unless-stopped
     volumes:
       - ./data/nginx/prod:/etc/nginx/conf.d
-      - ./data/certbot/conf/live:/etc/letsencrypt/live
-      - ./data/certbot/options-ssl-nginx.conf:/etc/letsencrypt/options-ssl-nginx.conf
-      - ./data/certbot/ssl-dhparams.pem:/etc/letsencrypt/ssl-dhparams.pem
+      - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     ports:
       - "80:80"
