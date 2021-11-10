@@ -12,9 +12,9 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    # depends_on:
-    #   - web
-    #   - ui
+    depends_on:
+      - web
+      - ui
     command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
     image: certbot/certbot
@@ -23,25 +23,25 @@ services:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-  # web:
-  #   image: safetyvision/safety-vision-platform
-  #   command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
-  #   environment:
-  #     - SECRET_KEY
-  #     - DEBUG
-  #     - ALLOWED_HOSTS
-  #     - DATABASE_HOST
-  #     - DATABASE_USER
-  #     - DATABASE_PASSWORD
-  #     - DATABASE_NAME
-  #     - AWS_S3_ACCESS_KEY_ID
-  #     - AWS_S3_SECRET_ACCESS_KEY
-  #   expose:
-  #     - 8000
-  # ui:
-  #   image: safetyvision/safety-vision-ui
-  #   command: npm start
-  #   expose:
-  #     - 3000
-  #   depends_on:
-  #     - web
+  web:
+    image: safetyvision/safety-vision-platform
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    environment:
+      - SECRET_KEY
+      - DEBUG
+      - ALLOWED_HOSTS
+      - DATABASE_HOST
+      - DATABASE_USER
+      - DATABASE_PASSWORD
+      - DATABASE_NAME
+      - AWS_S3_ACCESS_KEY_ID
+      - AWS_S3_SECRET_ACCESS_KEY
+    expose:
+      - 8000
+  ui:
+    image: safetyvision/safety-vision-ui
+    command: npm start
+    expose:
+      - 3000
+    depends_on:
+      - web
