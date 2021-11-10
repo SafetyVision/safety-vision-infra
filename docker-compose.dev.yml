@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - ./nginx.dev.conf:/etc/nginx/nginx.conf
+      - ./data/nginx/dev:/etc/nginx/conf.d
     ports:
       - 80:80
     depends_on:
@@ -15,7 +15,6 @@ services:
       - ui
   db:
     image: mysql:5.7
-    restart: always
     ports:
       - 3306:3306
     environment:
