@@ -34,6 +34,8 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASSWORD=password
       - DATABASE_NAME=safety-vision-platform-db
+    volumes:
+      - ../safety-vision-platform:/code
     expose:
       - 8000
     depends_on:
@@ -41,6 +43,10 @@ services:
   ui:
     image: safety-vision-platform_ui-local
     command: npm start
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ../safety-vision-ui:/code
     expose:
       - 3000
     depends_on:

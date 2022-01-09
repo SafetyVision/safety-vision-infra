@@ -7,11 +7,17 @@ Install `make` for your shell of choice.
 
 ## Setup
 
-1. Clone [safety-vision-ui](https://github.com/SafetyVision/safety-vision-ui), [safety-vision-platform](https://github.com/SafetyVision/safety-vision-platform), and this repo.
+1. Clone [safety-vision-ui](https://github.com/SafetyVision/safety-vision-ui), [safety-vision-platform](https://github.com/SafetyVision/safety-vision-platform), and this repo. When cloning these repos, make them siblings in your directory structure as shown:
+```
+your-parent-directory
+├── safety-vision-infra
+├── safety-vision-platform
++── safetey-vision-ui
+```
 
 2. Build the Docker containers for the platform and the UI by running `make build` in their respective directories.
 
-3. `cd` to this repository's directory.  
+3. `cd` to this repository's directory.
 
 4. Build and run the docker images:
 ```
