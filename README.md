@@ -15,7 +15,9 @@ your-parent-directory
 +── safetey-vision-ui
 ```
 
-2. Build the Docker containers for the platform and the UI by running `make build` in their respective directories.
+2. Build the Docker containers for the platform and the UI:
+- `cd` to `safety-vision-platform` and run `make build`
+- `cd` to `safety-vision-ui` and run `make setup`
 
 3. `cd` to this repository's directory.
 
