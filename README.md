@@ -12,7 +12,7 @@ Install `make` for your shell of choice.
 your-parent-directory
 ├── safety-vision-infra
 ├── safety-vision-platform
-+── safetey-vision-ui
++── safety-vision-ui
 ```
 
 2. Build the Docker containers for the platform and the UI:
