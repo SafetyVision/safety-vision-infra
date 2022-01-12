@@ -33,12 +33,12 @@ make migrate
 ```
 
 6. Visit http://localhost to verify the UI is running.
-7. ![image](https://user-images.githubusercontent.com/47062950/149214195-a0ed756a-b586-4e09-80aa-2c01dce9b7c0.png)
+![image](https://user-images.githubusercontent.com/47062950/149214195-a0ed756a-b586-4e09-80aa-2c01dce9b7c0.png)
 
-8. Visit http://localhost/api/accounts to verify the backend is running.
+7. Visit http://localhost/api/accounts to verify the backend is running.
 ![image](https://user-images.githubusercontent.com/47062950/149214073-6876d8a3-dec1-4234-b43a-69e067097d72.png)
 
-9. Shut the application down:
+8. Shut the application down:
 ```
 make down
 ```
