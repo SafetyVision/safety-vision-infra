@@ -34,8 +34,11 @@ services:
       - DATABASE_USER=root
       - DATABASE_PASSWORD=password
       - DATABASE_NAME=safety-vision-platform-db
+    links:
+      - localstack
     volumes:
       - ../safety-vision-platform:/code
+      - media:/code/media
     expose:
       - 8000
     depends_on:
@@ -47,10 +50,34 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - ../safety-vision-ui:/code
+      - media:/code/public
     expose:
       - 3000
     depends_on:
       - db
       - web
+  localstack:
+    container_name: "${LOCALSTACK_DOCKER_NAME-localstack_main}"
+    image: localstack/localstack
+    network_mode: bridge
+    ports:
+      - "127.0.0.1:4566:4566"
+      - "127.0.0.1:4571:4571"
+    environment:
+      - SERVICES=s3
+      - DEBUG=${DEBUG-}
+      - DATA_DIR=${DATA_DIR-}
+      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR-}
+      - HOST_TMP_FOLDER=${TMPDIR:-/tmp/}localstack
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - HOSTNAME_EXTERNAL=localhost
+      - HOSTNAME=localhost
+      - USE_SSL=false
+      - DATA_DIR=${LOCALSTACK_DATA_DIR:-/tmp/localstack/data}
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - ./localstack:/docker-entrypoint-initaws.d
+      - ./localstack_data:/tmp/localstack
 volumes:
   db:
+  media:
