@@ -34,7 +34,8 @@ services:
       - DATABASE_USER
       - DATABASE_PASSWORD
       - DATABASE_NAME
-      - AWS_S3_ACCESS_KEY_ID
-      - AWS_S3_SECRET_ACCESS_KEY
+      - CREATE_INFRACTION_EVENT_KEY
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
     expose:
       - 8000
