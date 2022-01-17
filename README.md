@@ -19,7 +19,7 @@ your-parent-directory
 - `cd` to `safety-vision-platform` and run `make build`
 - `cd` to `safety-vision-ui` and run `make setup`
 
-3. `cd` to this repository's directory.
+3. `cd` to this repository's directory and set your `AWS_ACCESS_KEY_ID` and `AWS_SECRECT_ACCESS_KEY` environment variables.
 
 4. Build and run the docker images:
 ```
