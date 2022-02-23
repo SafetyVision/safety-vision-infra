@@ -24,7 +24,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
   web:
     image: safetyvision/safety-vision-platform
-    command: daphne config.asgi:application
+    command: daphne -b 0.0.0.0 -p 8000 config.asgi:application
     restart: unless-stopped
     environment:
       - SECRET_KEY
